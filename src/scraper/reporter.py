@@ -1,25 +1,34 @@
 import json
-from pathlib import Path
 from datetime import datetime, timezone
+from pathlib import Path
+
+REPORT_PATH = Path(
+    "storage/scrape_report.json"
+)
 
 
 def save_scrape_report(
-    total_articles: int,
-    saved_files: int,
+    *,
+    total_articles,
+    added,
+    updated,
+    skipped,
 ):
-    report = {
-        "scraped_at": datetime.now(timezone.utc).isoformat(),
-        "total_articles": total_articles,
-        "saved_files": saved_files,
-    }
-
-    Path("storage").mkdir(
+    REPORT_PATH.parent.mkdir(
         parents=True,
         exist_ok=True,
     )
 
+    report = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "total_articles": total_articles,
+        "added": added,
+        "updated": updated,
+        "skipped": skipped,
+    }
+
     with open(
-        "storage/scrape_report.json",
+        REPORT_PATH,
         "w",
         encoding="utf-8",
     ) as f:
