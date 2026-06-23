@@ -18,10 +18,12 @@ def sanitize_markdown(markdown: str) -> str:
 
 
 def build_markdown_document(
-    article,
-    markdown,
-):
-    markdown = sanitize_markdown(markdown)
+    article: dict,
+    markdown: str,
+) -> str:
+    markdown = sanitize_markdown(
+        markdown
+    )
 
     return f"""---
 title: {yaml_safe_string(article.get("title", ""))}
@@ -41,19 +43,21 @@ Source: {article.get("html_url", "")}
 def build_filename(
     title: str,
     article_id: int,
-):
+) -> str:
     slug = slugify(title)
 
     if not slug:
         slug = "article"
 
-    return f"{slug}_{article_id}.md"
+    return (
+        f"{slug}_{article_id}.md"
+    )
 
 
 def save_markdown(
     path: str,
     content: str,
-):
+) -> None:
     Path(path).parent.mkdir(
         parents=True,
         exist_ok=True,
