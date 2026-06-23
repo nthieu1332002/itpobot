@@ -1,7 +1,7 @@
 .venv/
 __pycache__/
+.git/
 .env
-logs/*.log
-
-storage/vector_store.json
+storage/articles/
 storage/scrape_report.json
+storage/vector_store.json
