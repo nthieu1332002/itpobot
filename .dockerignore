@@ -3,5 +3,3 @@ __pycache__/
 .git/
 .env
 storage/articles/
-storage/scrape_report.json
-storage/vector_store.json

@@ -2,6 +2,3 @@
 __pycache__/
 .env
 logs/*.log
-
-storage/vector_store.json
-storage/scrape_report.json
